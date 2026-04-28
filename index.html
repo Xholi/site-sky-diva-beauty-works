@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sky Diva Beauty Works - Beauty &amp; Wellness</title>
+  <meta name="description" content="Sky Diva Beauty Works is a trusted beauty serving the Francis Baard Street, Pretoria Central, Pretoria community with quality services and a commitment to custo">
+  <meta property="og:title" content="Sky Diva Beauty Works - Beauty &amp; Wellness">
+  <meta property="og:description" content="Sky Diva Beauty Works is a trusted beauty serving the Francis Baard Street, Pretoria Central, Pretoria community with quality services and a commitment to custo">
+  <style>
+    :root {
+      --primary: #3B82F6;
+      --secondary: #10B981;
+      --nav-h: 68px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #1a1a2e; background: #fff; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: var(--nav-h);
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5vw;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-logo { height: 40px; width: auto; border-radius: 6px; object-fit: contain; }
+    .nav-brand-name { font-size: 1.25rem; font-weight: 700; color: var(--primary); }
+    .nav-links { display: flex; align-items: center; gap: 4px; }
+    .nav-links a {
+      padding: 8px 16px; border-radius: 8px;
+      font-size: 0.9rem; font-weight: 500; text-decoration: none; color: #444;
+      transition: all 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { background: var(--primary); color: #fff; }
+    .nav-cta {
+      background: var(--primary); color: #fff !important;
+      padding: 10px 22px !important; border-radius: 25px !important;
+      font-weight: 600 !important;
+    }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: #444; border-radius: 2px; transition: 0.3s; }
+
+    /* SECTIONS */
+    section { display: none; min-height: 100vh; padding-top: var(--nav-h); }
+    section.active { display: block; }
+
+    /* HOME */
+    .hero {
+      min-height: calc(100vh - var(--nav-h));
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: 60px 20px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1400&fit=crop') center/cover;
+      opacity: 0.12;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 700px; color: #fff; }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.4);
+      padding: 6px 18px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 24px;
+    }
+    .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.2; margin-bottom: 20px; }
+    .hero p { font-size: 1.1rem; opacity: 0.9; line-height: 1.7; margin-bottom: 36px; max-width: 520px; margin-left: auto; margin-right: auto; }
+    .hero-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 32px; border-radius: 50px; font-size: 0.95rem; font-weight: 600;
+      text-decoration: none; cursor: pointer; border: none; transition: all 0.25s;
+    }
+    .btn-white { background: #fff; color: var(--primary); }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
+    .btn-outline-white { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.7); }
+    .btn-outline-white:hover { background: rgba(255,255,255,0.15); }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.2); filter: brightness(1.05); }
+
+    /* STATS ROW */
+    .stats-row {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      background: #fff; border-radius: 16px;
+      box-shadow: 0 4px 40px rgba(0,0,0,0.1);
+      margin: -36px auto 0; max-width: 700px; position: relative; z-index: 2;
+    }
+    .stat { text-align: center; padding: 28px 20px; border-right: 1px solid #f0f0f0; }
+    .stat:last-child { border-right: none; }
+    .stat-num { font-size: 2rem; font-weight: 800; color: var(--primary); }
+    .stat-label { font-size: 0.8rem; color: #888; margin-top: 4px; }
+    .home-bottom { padding: 80px 5vw 60px; max-width: 1100px; margin: 0 auto; }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 32px; margin-top: 48px; }
+    .feature-card {
+      background: #f9fafb; border-radius: 16px; padding: 32px 28px;
+      border: 1px solid #eee; transition: all 0.25s;
+    }
+    .feature-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); border-color: var(--primary); }
+    .feature-icon { font-size: 2.5rem; margin-bottom: 18px; }
+    .feature-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
+    .feature-desc { font-size: 0.9rem; color: #666; line-height: 1.7; }
+    .section-tag { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary); margin-bottom: 12px; }
+    .section-title { font-size: clamp(1.6rem, 3vw, 2.5rem); font-weight: 800; line-height: 1.2; margin-bottom: 16px; }
+    .section-sub { font-size: 1rem; color: #666; line-height: 1.7; max-width: 560px; }
+
+    /* ABOUT */
+    #about { background: #f8fafc; }
+    .about-inner { max-width: 1100px; margin: 0 auto; padding: 80px 5vw; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; margin-top: 48px; }
+    .about-image { border-radius: 20px; overflow: hidden; position: relative; }
+    .about-image img { width: 100%; height: 440px; object-fit: cover; display: block; }
+    .about-image::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to bottom right, var(--primary), var(--secondary));
+      opacity: 0.12; border-radius: 20px;
+    }
+    .about-text { display: flex; flex-direction: column; gap: 24px; }
+    .about-text p { color: #555; line-height: 1.8; font-size: 1rem; }
+    .values-list { display: flex; flex-direction: column; gap: 16px; margin-top: 8px; }
+    .value-item { display: flex; align-items: flex-start; gap: 14px; }
+    .value-icon {
+      width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem; color: #fff; font-weight: 700;
+    }
+    .value-text h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 2px; }
+    .value-text p { font-size: 0.85rem; color: #777; margin: 0; }
+    .team-section { margin-top: 64px; }
+    .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; margin-top: 32px; }
+    .team-card { text-align: center; }
+    .team-avatar {
+      width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 12px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem; color: #fff; font-weight: 700;
+    }
+    .team-name { font-weight: 600; font-size: 0.95rem; }
+    .team-role { font-size: 0.8rem; color: #888; margin-top: 2px; }
+
+    /* SERVICES */
+    #services .services-inner { max-width: 1100px; margin: 0 auto; padding: 80px 5vw; }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 28px; margin-top: 48px; }
+    .service-card {
+      background: #fff; border: 1px solid #eee; border-radius: 20px;
+      overflow: hidden; transition: all 0.3s;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(0,0,0,0.1); border-color: var(--primary); }
+    .service-img { width: 100%; height: 180px; object-fit: cover; }
+    .service-img-placeholder {
+      height: 180px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem;
+    }
+    .service-body { padding: 24px; }
+    .service-name { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+    .service-desc { font-size: 0.88rem; color: #666; line-height: 1.7; margin-bottom: 16px; }
+    .service-price {
+      display: inline-block; padding: 6px 14px; border-radius: 20px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff; font-size: 0.85rem; font-weight: 700;
+    }
+    .services-cta { text-align: center; margin-top: 52px; }
+
+    /* CONTACT */
+    #contact { background: #f8fafc; }
+    .contact-inner { max-width: 1100px; margin: 0 auto; padding: 80px 5vw; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; margin-top: 48px; }
+    .contact-info { display: flex; flex-direction: column; gap: 32px; }
+    .contact-block { display: flex; align-items: flex-start; gap: 16px; }
+    .contact-icon {
+      width: 48px; height: 48px; border-radius: 12px; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; color: #fff;
+    }
+    .contact-detail h4 { font-weight: 600; margin-bottom: 4px; font-size: 0.95rem; }
+    .contact-detail p, .contact-detail a { font-size: 0.9rem; color: #666; text-decoration: none; }
+    .contact-detail a:hover { color: var(--primary); }
+    .contact-form { background: #fff; border-radius: 20px; padding: 40px; box-shadow: 0 4px 30px rgba(0,0,0,0.07); }
+    .contact-form h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 24px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 18px; }
+    .form-group label { font-size: 0.85rem; font-weight: 600; color: #444; }
+    .form-group input, .form-group textarea, .form-group select {
+      padding: 12px 16px; border: 1.5px solid #e5e7eb; border-radius: 10px;
+      font-size: 0.9rem; font-family: inherit; background: #f9fafb;
+      transition: border-color 0.2s; outline: none;
+    }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--primary); background: #fff; }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-submit {
+      width: 100%; padding: 14px; background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff; border: none; border-radius: 10px; font-size: 0.95rem;
+      font-weight: 600; cursor: pointer; font-family: inherit; transition: opacity 0.2s;
+    }
+    .form-submit:hover { opacity: 0.9; }
+    .form-success {
+      display: none; background: #ecfdf5; border: 1px solid #6ee7b7;
+      border-radius: 10px; padding: 16px; text-align: center; color: #065f46; font-weight: 600; margin-top: 16px;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #0f172a; color: #94a3b8;
+      padding: 48px 5vw 28px;
+    }
+    .footer-inner { max-width: 1100px; margin: 0 auto; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 40px; }
+    .footer-brand-name { font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 12px; }
+    .footer-brand p { font-size: 0.875rem; line-height: 1.7; }
+    .footer-col h5 { color: #fff; font-weight: 600; margin-bottom: 16px; font-size: 0.9rem; }
+    .footer-col a { display: block; color: #94a3b8; text-decoration: none; font-size: 0.85rem; margin-bottom: 10px; transition: color 0.2s; }
+    .footer-col a:hover { color: #fff; }
+    .footer-bottom { border-top: 1px solid #1e293b; padding-top: 24px; display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: linear-gradient(135deg, var(--primary)22, var(--secondary)22);
+      border: 1px solid var(--primary)44;
+      color: var(--primary); padding: 6px 14px; border-radius: 20px;
+      font-size: 0.78rem; font-weight: 600; margin-bottom: 24px;
+    }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      .nav-links { display: none; flex-direction: column; position: absolute; top: var(--nav-h); left: 0; right: 0; background: #fff; padding: 16px; border-bottom: 1px solid #eee; gap: 4px; }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 36px; }
+      .footer-top { grid-template-columns: 1fr; gap: 28px; }
+      .stats-row { grid-template-columns: 1fr; }
+      .stat { border-right: none; border-bottom: 1px solid #f0f0f0; }
+      .stat:last-child { border-bottom: none; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <a class="nav-brand" href="#" onclick="showPage('home')">
+    <span class="nav-brand-name">Sky Diva Beauty Works</span>
+  </a>
+  <div class="nav-links" id="navLinks">
+    <a href="#" onclick="showPage('home')" class="active" data-page="home">Home</a>
+    <a href="#" onclick="showPage('about')" data-page="about">About</a>
+    <a href="#" onclick="showPage('services')" data-page="services">Services</a>
+    <a href="#" onclick="showPage('contact')" class="nav-cta" data-page="contact">Contact Us</a>
+  </div>
+  <div class="hamburger" onclick="toggleNav()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HOME -->
+<section id="home" class="active">
+  <div class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">✦ Welcome to Sky Diva Beauty Works</div>
+      <h1>Quality You Can Trust, <span style="opacity:0.9">Service You'll Love</span></h1>
+      <p>Sky Diva Beauty Works is a trusted beauty serving the Francis Baard Street, Pretoria Central, Pretoria community with quality services and a commitment to customer satisfaction.</p>
+      <div class="hero-buttons">
+        <a href="#" onclick="showPage('services')" class="btn btn-white">Our Services</a>
+        <a href="#" onclick="showPage('contact')" class="btn btn-outline-white">Get in Touch</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat"><div class="stat-num">100+</div><div class="stat-label">Happy Clients</div></div>
+    <div class="stat"><div class="stat-num">5★</div><div class="stat-label">Average Rating</div></div>
+    <div class="stat"><div class="stat-num">2026</div><div class="stat-label">Serving Since</div></div>
+  </div>
+
+  <div class="home-bottom">
+    <div class="pill">✦ Why Choose Us</div>
+    <h2 class="section-title">Dedicated to Excellence<br>in Everything We Do</h2>
+    <p class="section-sub">We bring expertise, passion, and a personal touch to every client relationship. Here's what sets us apart:</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <div class="feature-title">Expert Team</div>
+        <div class="feature-desc">Our experienced professionals deliver outstanding results with every project, backed by years of industry knowledge.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <div class="feature-title">Fast Turnaround</div>
+        <div class="feature-desc">We respect your time. Projects are completed efficiently without compromising on quality or attention to detail.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🤝</div>
+        <div class="feature-title">Personalised Service</div>
+        <div class="feature-desc">Every client is unique. We tailor our approach to your specific needs, goals, and budget.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💎</div>
+        <div class="feature-title">Premium Quality</div>
+        <div class="feature-desc">We never cut corners. From materials to methodology, quality is at the heart of everything we deliver.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-inner">
+    <div class="pill">✦ Our Story</div>
+    <h2 class="section-title">About Sky Diva Beauty Works</h2>
+    <p class="section-sub">We are passionate about what we do and committed to our community.</p>
+
+    <div class="about-grid">
+      <div class="about-image">
+        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=700&h=500&fit=crop" alt="Our team at work">
+      </div>
+      <div class="about-text">
+        <div>
+          <div class="section-tag">Who We Are</div>
+          <p>Sky Diva Beauty Works is a trusted beauty serving the Francis Baard Street, Pretoria Central, Pretoria community with quality services and a commitment to customer satisfaction.</p>
+        </div>
+        <div class="values-list">
+          <div class="value-item">
+            <div class="value-icon">1</div>
+            <div class="value-text">
+              <h4>Our Mission</h4>
+              <p>To provide exceptional service that exceeds expectations and builds lasting relationships with our community.</p>
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">2</div>
+            <div class="value-text">
+              <h4>Our Vision</h4>
+              <p>To be the most trusted name in our industry, known for quality, integrity, and innovation.</p>
+            </div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">3</div>
+            <div class="value-text">
+              <h4>Our Values</h4>
+              <p>Excellence, transparency, and genuine care for every client guide every decision we make.</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <a href="#" onclick="showPage('contact')" class="btn btn-primary" style="align-self:flex-start;">Work With Us →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="team-section">
+      <div class="section-tag">Our People</div>
+      <h3 class="section-title" style="font-size:1.8rem;">The Team Behind Our Success</h3>
+      <div class="team-grid">
+        <div class="team-card"><div class="team-avatar">👤</div><div class="team-name">Management</div><div class="team-role">Leadership Team</div></div>
+        <div class="team-card"><div class="team-avatar">⚡</div><div class="team-name">Operations</div><div class="team-role">Delivery Experts</div></div>
+        <div class="team-card"><div class="team-avatar">🎯</div><div class="team-name">Client Success</div><div class="team-role">Support & Care</div></div>
+        <div class="team-card"><div class="team-avatar">💡</div><div class="team-name">Strategy</div><div class="team-role">Innovation Team</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-inner">
+    <div class="pill">✦ What We Offer</div>
+    <h2 class="section-title">Our Services</h2>
+    <p class="section-sub">Explore our full range of professional services, designed to meet your every need.</p>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <img class="service-img" src="https://images.unsplash.com/photo-1560066984-138daaa7a2db?ixlib&#x3D;rb-4.0.3&amp;auto&#x3D;format&amp;fit&#x3D;crop&amp;w&#x3D;400&amp;q&#x3D;80" alt="Hair Styling &amp; Treatments" onerror="this.style.display='none'">
+        <div class="service-body">
+          <div class="service-name">Hair Styling &amp; Treatments</div>
+          <div class="service-desc">Expert cutting, colouring, blowouts, and professional hair care treatments</div>
+          <span class="service-price">R250 - R1,800</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <img class="service-img" src="https://images.unsplash.com/photo-1604654894610-df63bc536371?ixlib&#x3D;rb-4.0.3&amp;auto&#x3D;format&amp;fit&#x3D;crop&amp;w&#x3D;400&amp;q&#x3D;80" alt="Nail Art &amp; Manicures" onerror="this.style.display='none'">
+        <div class="service-body">
+          <div class="service-name">Nail Art &amp; Manicures</div>
+          <div class="service-desc">Classic manicures, gel nails, acrylics, and creative nail art designs</div>
+          <span class="service-price">R180 - R550</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <img class="service-img" src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?ixlib&#x3D;rb-4.0.3&amp;auto&#x3D;format&amp;fit&#x3D;crop&amp;w&#x3D;400&amp;q&#x3D;80" alt="Facial &amp; Skin Treatments" onerror="this.style.display='none'">
+        <div class="service-body">
+          <div class="service-name">Facial &amp; Skin Treatments</div>
+          <div class="service-desc">Rejuvenating facials, chemical peels, and advanced skin care treatments</div>
+          <span class="service-price">R350 - R1,500</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <img class="service-img" src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?ixlib&#x3D;rb-4.0.3&amp;auto&#x3D;format&amp;fit&#x3D;crop&amp;w&#x3D;400&amp;q&#x3D;80" alt="Massage Therapy" onerror="this.style.display='none'">
+        <div class="service-body">
+          <div class="service-name">Massage Therapy</div>
+          <div class="service-desc">Relaxing Swedish, deep tissue, hot stone, and therapeutic massage sessions</div>
+          <span class="service-price">R450 - R900</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <img class="service-img" src="https://images.unsplash.com/photo-1583001931096-959e9a1a6223?ixlib&#x3D;rb-4.0.3&amp;auto&#x3D;format&amp;fit&#x3D;crop&amp;w&#x3D;400&amp;q&#x3D;80" alt="Lash &amp; Brow Services" onerror="this.style.display='none'">
+        <div class="service-body">
+          <div class="service-name">Lash &amp; Brow Services</div>
+          <div class="service-desc">Lash extensions, brow shaping, lamination, tinting, and microblading</div>
+          <span class="service-price">R280 - R1,200</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <img class="service-img" src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib&#x3D;rb-4.0.3&amp;auto&#x3D;format&amp;fit&#x3D;crop&amp;w&#x3D;400&amp;q&#x3D;80" alt="Bridal Packages" onerror="this.style.display='none'">
+        <div class="service-body">
+          <div class="service-name">Bridal Packages</div>
+          <div class="service-desc">Complete wedding day beauty packages for brides and bridal parties</div>
+          <span class="service-price">From R2,500</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="services-cta">
+      <p style="color:#666;margin-bottom:20px;">Ready to get started? We'd love to hear from you.</p>
+      <a href="#" onclick="showPage('contact')" class="btn btn-primary">Request a Quote →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="pill">✦ Reach Out</div>
+    <h2 class="section-title">Get in Touch</h2>
+    <p class="section-sub">We'd love to hear from you. Fill in the form or reach us directly using the details below.</p>
+
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-block">
+          <div class="contact-icon">📍</div>
+          <div class="contact-detail">
+            <h4>Our Location</h4>
+            <p>Francis Baard Street, Pretoria Central, Pretoria</p>
+          </div>
+        </div>
+        <div class="contact-block">
+          <div class="contact-icon">🕒</div>
+          <div class="contact-detail">
+            <h4>Business Hours</h4>
+            <p>Mon – Fri: 8:00 AM – 5:00 PM</p>
+            <p>Saturday: 9:00 AM – 1:00 PM</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <h3>Send Us a Message</h3>
+        <form id="contactForm" onsubmit="submitContactForm(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Your Name</label>
+              <input type="text" name="Your Name" placeholder="John Smith" required>
+            </div>
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" name="Email Address" placeholder="you@example.com" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" name="Phone Number" placeholder="082 000 0000">
+          </div>
+          <div class="form-group">
+            <label>How Can We Help?</label>
+            <textarea name="Message" placeholder="Tell us about your needs..."></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send Message →</button>
+          <div class="form-success" id="formSuccess">✓ Thank you! We'll be in touch within 24 hours.</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-brand-name">Sky Diva Beauty Works</div>
+        <p>Sky Diva Beauty Works is a trusted beauty serving the Francis Baard Street, Pretoria Central, Pretoria community with quality services and a commitment to customer satisfaction.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Navigation</h5>
+        <a href="#" onclick="showPage('home')">Home</a>
+        <a href="#" onclick="showPage('about')">About Us</a>
+        <a href="#" onclick="showPage('services')">Services</a>
+        <a href="#" onclick="showPage('contact')">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        
+        
+        <a href="#">Francis Baard Street, Pretoria Central, Pretoria</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Sky Diva Beauty Works. All rights reserved.</span>
+      <span style="font-size:0.75rem; opacity:0.6;">Built with WebPulse AI</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function submitContactForm(e) {
+    e.preventDefault();
+    const form = e.target;
+    const data = {};
+    new FormData(form).forEach((v,k) => data[k] = v);
+    fetch('/api/site-contact/89', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ formType: 'contact', formData: data })
+    }).then(r => r.json()).then(() => {
+      document.getElementById('formSuccess').style.display = 'block';
+      form.reset();
+    }).catch(() => alert('Submission failed. Please try contacting us directly.'));
+  }
+</script>
+<script>
+  function showPage(page) {
+    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('[data-page]').forEach(a => a.classList.remove('active'));
+    document.getElementById(page).classList.add('active');
+    document.querySelectorAll('[data-page="' + page + '"]').forEach(a => a.classList.add('active'));
+    document.getElementById('navLinks').classList.remove('open');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    return false;
+  }
+  function toggleNav() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+</script>
+</body>
+</html>
